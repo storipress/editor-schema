@@ -1,0 +1,5 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`can generate html with article mark 1`] = `"<p data-sp-article="client_id.article_id">Line 1</p><p data-sp-article-end="client_id.article_id">Line 2</p>"`;
+
+exports[`can generate multiple line html with article mark 1`] = `"<p data-sp-article="client_id.article_id">Line 1</p><p>Line 2</p><p>Line 3</p><p data-sp-article-end="client_id.article_id">Line 4</p>"`;

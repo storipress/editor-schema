@@ -1,0 +1,98 @@
+# yml-language-server: $schema='https://moonrepo.dev/schemas/project.json'
+
+tasks:
+  build:
+    command:
+      - tsup
+      - --dts-only
+    deps:
+      - ~:bundle-browser
+    platform: node
+    inputs:
+      - '@globs(sources)'
+    outputs:
+      - dist
+  bundle-node:
+    command:
+      - vite
+      - build
+    platform: node
+    inputs:
+      - '@globs(sources)'
+      - vite.config.ts
+    outputs:
+      - dist
+  bundle-browser:
+    command:
+      - vite
+      - build
+      - --mode
+      - browser
+    deps:
+      - ~:bundle-node
+    platform: node
+    inputs:
+      - '@globs(sources)'
+      - vite.config.ts
+    outputs:
+      - dist
+  build-storybook:
+    command:
+      - storybook
+      - build
+    platform: node
+  dev:
+    command:
+      - vite
+      - --open
+      - --mode
+      - browser
+    local: true
+    platform: node
+  lint:
+    command:
+      - eslint
+      - .
+    platform: node
+  lint-fix:
+    command:
+      - eslint
+      - --fix
+      - .
+    platform: node
+  serve:
+    command:
+      - storybook
+      - dev
+      - -p
+      - "6006"
+    local: true
+    platform: node
+  storybook:
+    command:
+      - storybook
+      - dev
+      - -p
+      - "6006"
+    platform: node
+    local: true
+  test:
+    command:
+      - vitest
+    platform: node
+    deps:
+      - ~:build
+    inputs:
+      - '@globs(sources)'
+      - 'dist/editor-schema.cjs'
+      - 'dist/editor-schema.js'
+      - 'dist/editor-schema.browser.js'
+  test-coverage:
+    extends: test
+    args:
+      - --coverage
+  typecheck:
+    command:
+      - tsc
+      - --noEmit
+    platform: node

@@ -1,0 +1,83 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`parse > parse to ProseMirror node 1`] = `
+{
+  "content": [
+    {
+      "attrs": {
+        "id": null,
+      },
+      "content": [
+        {
+          "text": "foo",
+          "type": "text",
+        },
+      ],
+      "type": "paragraph",
+    },
+    {
+      "attrs": {
+        "alt": null,
+        "cid": null,
+        "file": null,
+        "id": null,
+        "link": "",
+        "provider": null,
+        "source": [],
+        "src": "https://example.com",
+        "style": null,
+        "title": "",
+        "type": "normal",
+      },
+      "type": "image",
+    },
+  ],
+  "type": "doc",
+}
+`;
+
+exports[`walkTree > wrap image src 1`] = `
+{
+  "content": [
+    {
+      "attrs": {
+        "alt": "",
+        "cid": null,
+        "file": null,
+        "id": null,
+        "link": "",
+        "provider": null,
+        "source": [],
+        "src": "$https://example.com$",
+        "style": "",
+        "title": "",
+        "type": "regular",
+      },
+      "type": "image",
+    },
+    {
+      "attrs": {
+        "blockName": null,
+        "content": "",
+        "id": null,
+        "name": null,
+        "uuid": null,
+      },
+      "type": "embed",
+    },
+    {
+      "attrs": {
+        "id": null,
+      },
+      "content": [
+        {
+          "text": "foo",
+          "type": "text",
+        },
+      ],
+      "type": "paragraph",
+    },
+  ],
+  "type": "doc",
+}
+`;

@@ -1,0 +1,24 @@
+{
+  "type": "doc",
+  "content": [
+    { "type": "paragraph", "content": [{ "text": "12345", "type": "text" }] },
+    {
+      "type": "heading",
+      "attrs": {
+        "id": "f5599a19-bea3-4a36-8d8c-7fbfa6939f7c",
+        "level": 2,
+        "data-toc-id": "f5599a19-bea3-4a36-8d8c-7fbfa6939f7c"
+      },
+      "content": [{ "text": "First", "type": "text" }]
+    },
+    {
+      "type": "heading",
+      "attrs": {
+        "id": "99d1d6b2-7ca9-4a4c-9fcf-832a4fee7791",
+        "level": 2,
+        "data-toc-id": "99d1d6b2-7ca9-4a4c-9fcf-832a4fee7791"
+      },
+      "content": [{ "text": "Second", "type": "text" }]
+    }
+  ]
+}

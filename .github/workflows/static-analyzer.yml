@@ -1,0 +1,42 @@
+name: Static Analyzer
+
+on: [pull_request]
+
+jobs:
+  static-analyzer:
+    runs-on: ubuntu-22.04
+    name: Static Analyzer
+    env:
+      NODE_OPTIONS: --max-old-space-size=6144
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: yarn
+      - run: yarn
+
+      - uses: reviewdog/action-eslint@v1
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          eslint_flags: '{src,test}/**/*.{vue,ts,js,tsx,jsx}'
+
+      - uses: reviewdog/action-setup@v1
+        with:
+          reviewdog_version: v0.14.1
+      - run: ${GITHUB_WORKSPACE}/.github/reviewdog-tsc.sh
+        shell: bash
+        env:
+          INPUT_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          INPUT_WORKDIR: .
+          INPUT_LEVEL: error
+          INPUT_REPORTER: github-pr-review
+          INPUT_FILTER_MODE: added
+          INPUT_FAIL_ON_ERROR: 'false'
+          INPUT_REVIEWDOG_FLAGS: ''
+          INPUT_TOOL_NAME: tsc
+          INPUT_TSC_FLAGS: ''
+
+      - run: yarn typecheck
+        continue-on-error: true

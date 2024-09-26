@@ -1,0 +1,5 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`wrapPaidContent > flatten exist paidContent 1`] = `"<p>free content 1</p><p>free content 2</p><p>free content 3</p><div data-format="paid-content"><p>paid content 1</p></div>"`;
+
+exports[`wrapPaidContent > wrap paragraph to paidContent 1`] = `"<p>free content 1</p><p>free content 2</p><p>free content 3</p><div data-format="paid-content"><p>paid content 1</p></div>"`;

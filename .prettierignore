@@ -1,0 +1,4 @@
+.vite-inspect
+dist
+.yarn
+CHANGELOG.md
